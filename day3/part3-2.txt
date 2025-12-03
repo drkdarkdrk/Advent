@@ -1,0 +1,38 @@
+with open("day3.txt","r") as day3_file:
+      data=[]
+      for line in day3_file:
+            data.append(line.strip())
+
+
+      total=0
+
+      for entry in data:
+
+            index=[]
+            for i in range(len(entry)):
+                  index.append(i)
+
+            array = [0]*12
+            arrayIndex=[0]*12
+            
+            array[0]=entry[0]
+
+            max=0
+            
+            for p in range(len(entry)-11):
+                  if(int(entry[p])>max):
+                        max=int(entry[p])
+                        array[0]=entry[p]
+                        arrayIndex[0]=p
+
+            for j in range(10,-1,-1):
+                  for k in range(arrayIndex[10-j]+1,len(entry)-j):
+                        if(int(entry[k])>int(array[11-j])):
+                              array[11-j]=entry[k]
+                              arrayIndex[11-j]=k
+            number=""
+            for digit in array:
+                  number+=str(digit)
+            total+=(int(number))
+                           
+      print(total)
